@@ -79,7 +79,7 @@ class _ChatBotState extends State<ChatBot> {
 
     try {
       http.Response response = await http.post(
-        Uri.parse('https://18d9-156-210-149-186.ngrok-free.app/home/tryer'),
+        Uri.parse('https://1cf3-156-210-149-186.ngrok-free.app/home/tryer'),
         headers: {
           "Content-Type": "application/json",
           if (authToken != null) "Authorization": "Bearer $authToken",
@@ -110,6 +110,12 @@ class _ChatBotState extends State<ChatBot> {
               "type": "text",
 
             });
+            messages.add({
+              "role": "bot",
+              "message": "assets/images/Not-Found12.png",
+              "type": "image",
+            });
+
           });
         }
       } else {
