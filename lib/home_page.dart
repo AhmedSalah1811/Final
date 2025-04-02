@@ -103,11 +103,18 @@ class _HomePageState extends State<HomePage> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   const SizedBox(height: 50),
-                  SizedBox(
-                    height: 200,
-                    width: 200,
-                    child: Image.asset('assets/images/logo.png'),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 5),
+                    child: Text('Create Beautiful UIs Without Writing Code',style: TextStyle(fontSize: 27,color: Colors.blue,fontWeight: FontWeight.bold, ),textAlign: TextAlign.center,),
                   ),
+                  SizedBox(height: 30,),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Text('Generate professional-grade user interfaces instantly with our powerful UI Generator . save time and focus what matter most.',style: TextStyle(fontSize: 15,color: Colors.white),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+
                   Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: Form(
@@ -132,6 +139,30 @@ class _HomePageState extends State<HomePage> {
                               style: TextStyle(color: Colors.white, fontSize: 18),
                             ),
                           ),
+                          // const SizedBox(height: 100),
+                          // SizedBox(
+                          //   height: 200,
+                          //   child: ListView(
+                          //     scrollDirection: Axis.horizontal,
+                          //     children: const [
+                          //       FeaturesBox(
+                          //         title: 'Speed',
+                          //         description:
+                          //         'Generate complete UI in seconds not hours. Streamline your development.',
+                          //       ),
+                          //       FeaturesBox(
+                          //         title: 'Customization',
+                          //         description:
+                          //         'Tailor every aspect of your UI to match your brand and requirements perfectly.',
+                          //       ),
+                          //       FeaturesBox(
+                          //         title: 'Professional',
+                          //         description:
+                          //         'Get production-ready code that follows best practices and modern standards.',
+                          //       ),
+                          //     ],
+                          //   ),
+                          // ),
                           if (userToken == null) ...[
                             const SizedBox(height: 10),
                             RichText(
@@ -163,31 +194,32 @@ class _HomePageState extends State<HomePage> {
                                 ],
                               ),
                             ),
-                            const SizedBox(height: 100),
-                            SizedBox(
-                              height: 200,
-                              child: ListView(
-                                scrollDirection: Axis.horizontal,
-                                children: const [
-                                  FeaturesBox(
-                                    title: 'Speed',
-                                    description:
-                                    'Generate complete UI in seconds not hours. Streamline your development.',
-                                  ),
-                                  FeaturesBox(
-                                    title: 'Customization',
-                                    description:
-                                    'Tailor every aspect of your UI to match your brand and requirements perfectly.',
-                                  ),
-                                  FeaturesBox(
-                                    title: 'Professional',
-                                    description:
-                                    'Get production-ready code that follows best practices and modern standards.',
-                                  ),
-                                ],
-                              ),
-                            ),
+
                           ],
+                          const SizedBox(height: 100),
+                          SizedBox(
+                            height: 200,
+                            child: ListView(
+                              scrollDirection: Axis.horizontal,
+                              children: const [
+                                FeaturesBox(
+                                  title: 'Speed',
+                                  description:
+                                  'Generate complete UI in seconds not hours. Streamline your development.',
+                                ),
+                                FeaturesBox(
+                                  title: 'Customization',
+                                  description:
+                                  'Tailor every aspect of your UI to match your brand and requirements perfectly.',
+                                ),
+                                FeaturesBox(
+                                  title: 'Professional',
+                                  description:
+                                  'Get production-ready code that follows best practices and modern standards.',
+                                ),
+                              ],
+                            ),
+                          ),
                         ],
                       ),
                     ),
@@ -200,7 +232,7 @@ class _HomePageState extends State<HomePage> {
       ),
       bottomNavigationBar: Container(height: 60,
         child: BottomAppBar(
-          color: Colors.white70,
+          color: Colors.black87,
           shape: const CircularNotchedRectangle(),
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 1),

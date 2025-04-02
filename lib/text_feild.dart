@@ -21,12 +21,12 @@ class Text_Field extends StatelessWidget {
     return TextFormField(
       controller: controller,
       obscureText: isPassword,
-      style: const TextStyle(color: Colors.white),
+      style: const TextStyle(color: Colors.black),
       decoration: InputDecoration(
         hintText: hintText,
-        hintStyle: const TextStyle(color: Colors.white),
+        hintStyle: const TextStyle(color: Colors.black),
         filled: true,
-        fillColor: Colors.black26,
+        fillColor: Colors.white,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(20),
           borderSide: BorderSide(

@@ -2,7 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:path_provider/path_provider.dart';
+// import 'package:gallery_saver/gallery_saver.dart';
+
+import 'dart:io';
 import 'login.dart';
+
 
 class ChatBot extends StatefulWidget {
   const ChatBot({super.key});
@@ -33,8 +38,15 @@ class _ChatBotState extends State<ChatBot> {
         "message": "Hi!🖐🏻❤️\nHow can I help you today?😊",
         "type": "text",
       });
+
+      messages.add({
+        "role": "bot",
+        "message": "🚀 For the ultimate experience in quality and performance, please use this app ONLY for creating user interfaces! 🎨✨",
+        "type": "text",
+      });
     });
   }
+
 
   Future<void> loadTokenAndAttempts() async {
     final prefs = await SharedPreferences.getInstance();
@@ -75,11 +87,28 @@ class _ChatBotState extends State<ChatBot> {
       }
     });
 
+    if (!userMessage.toLowerCase().contains("ui")) {
+      setState(() {
+        messages.add({
+          "role": "bot",
+          "message": "🎨🤖 UI magic only!\nWe only do UI, no AI overlords here!✨😎",
+          "type": "text",
 
+        });
+        messages.add({
+          "role": "bot",
+          "message": "assets/images/put ui.png",
+          "type": "image",
+        });
+      });
+      isLoading = false;
+      promptController.clear();
+      return;
+    }
 
     try {
       http.Response response = await http.post(
-        Uri.parse('https://1cf3-156-210-149-186.ngrok-free.app/home/tryer'),
+        Uri.parse('https://5f6a-197-53-108-220.ngrok-free.app/home/chat'),
         headers: {
           "Content-Type": "application/json",
           if (authToken != null) "Authorization": "Bearer $authToken",
@@ -90,7 +119,7 @@ class _ChatBotState extends State<ChatBot> {
 
       if (response.statusCode == 200) {
         var data = jsonDecode(response.body);
-        String? imageUrl = data['url'];
+        String? imageUrl = data['imagePath'];
 
         if (imageUrl != null && imageUrl.isNotEmpty) {
           setState(() {
@@ -100,7 +129,6 @@ class _ChatBotState extends State<ChatBot> {
               "type": "image",
               "showPoll": true,
             });
-
           });
         } else {
           setState(() {
@@ -108,14 +136,12 @@ class _ChatBotState extends State<ChatBot> {
               "role": "bot",
               "message": "Failed to generate the UI😔.\nInvalid response from the server❌",
               "type": "text",
-
             });
             messages.add({
               "role": "bot",
               "message": "assets/images/Not-Found12.png",
               "type": "image",
             });
-
           });
         }
       } else {
@@ -131,16 +157,19 @@ class _ChatBotState extends State<ChatBot> {
             "type": "image",
           });
         });
-
       }
     } catch (e) {
       setState(() {
         messages.add({
           "role": "bot",
-          "message": "Failed to connect to the server😔🚫.}",
+          "message": "Failed to connect to the server😔🚫. Please try again🔄️.",
           "type": "text",
         });
-
+        messages.add({
+          "role": "bot",
+          "message": "assets/images/Error13.png",
+          "type": "image",
+        });
       });
     } finally {
       setState(() {
@@ -155,6 +184,7 @@ class _ChatBotState extends State<ChatBot> {
       MaterialPageRoute(builder: (context) => const LoginPage()),
     );
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -205,31 +235,67 @@ class _ChatBotState extends State<ChatBot> {
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Container(
-                        margin: const EdgeInsets.symmetric(vertical: 5),
-                        padding: const EdgeInsets.all(10),
-                        decoration: BoxDecoration(
-                          color: Colors.grey[300],
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: isLocal
-                            ? Image.asset(
-                          imageUrl,
-                          fit: BoxFit.cover,
-                        )
-                            : FadeInImage.assetNetwork(
-                          placeholder: 'assets/loading.gif',
-                          image: imageUrl,
-                          fit: BoxFit.cover,
-                          imageErrorBuilder: (context, error, stackTrace) {
-                            return const Text('⚠️ Image can\'t load');
-                          },
-                        ),
+
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Expanded(
+                            child: Container(
+                              margin: const EdgeInsets.symmetric(vertical: 5),
+                              padding: const EdgeInsets.all(10),
+                              decoration: BoxDecoration(
+                                color: Colors.grey[300],
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: isLocal
+                                  ? Image.asset(
+                                imageUrl,
+                                fit: BoxFit.cover,
+                              )
+                                  : FadeInImage.assetNetwork(
+                                placeholder: 'assets/loading.gif',
+                                image: imageUrl,
+                                fit: BoxFit.cover,
+                                imageErrorBuilder: (context, error, stackTrace) {
+                                  return const Text('⚠️ Image can\'t load');
+                                },
+                              ),
+                            ),
+                          ),
+
+
+                          Column(
+                            children: [
+                              IconButton(
+                                icon: const Icon(Icons.download, color: Colors.green),
+                                onPressed: () async {
+                                  if (!isLocal) {
+                                    final tempDir = await getTemporaryDirectory();
+                                    final filePath = '${tempDir.path}/downloaded_image.png';
+                                    final response = await http.get(Uri.parse(imageUrl));
+                                    final file = File(filePath);
+                                    await file.writeAsBytes(response.bodyBytes);
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(content: Text("Image saved to gallery 📥")),
+                                    );
+                                  }
+                                },
+                              ),
+                              IconButton(
+                                icon: const Icon(Icons.share, color: Colors.blue),
+                                onPressed: () {
+
+                                },
+                              ),
+                            ],
+                          ),
+                        ],
                       ),
 
 
                       if (message["showPoll"] == true)
                         Container(
+                          alignment: Alignment.centerLeft,
                           margin: const EdgeInsets.symmetric(vertical: 5),
                           padding: const EdgeInsets.all(10),
                           decoration: BoxDecoration(
@@ -245,7 +311,7 @@ class _ChatBotState extends State<ChatBot> {
 
                       if (message["showPoll"] == true)
                         Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             TextButton(
                               onPressed: () {
@@ -264,13 +330,11 @@ class _ChatBotState extends State<ChatBot> {
                                 side: const BorderSide(color: Colors.green),
                               ),
                               child: const Text(
-                                "Satisfied",
+                                "Satisfied😁",
                                 style: TextStyle(color: Colors.green),
                               ),
                             ),
-
                             const SizedBox(width: 10),
-
                             TextButton(
                               onPressed: () {
                                 sendMessage(resendMessage: messages[index - 1]["message"]);
@@ -283,7 +347,7 @@ class _ChatBotState extends State<ChatBot> {
                                 side: const BorderSide(color: Colors.red),
                               ),
                               child: const Text(
-                                "Not Satisfied",
+                                "Not Satisfied😔",
                                 style: TextStyle(color: Colors.red),
                               ),
                             ),
@@ -292,6 +356,10 @@ class _ChatBotState extends State<ChatBot> {
                     ],
                   );
                 }
+
+
+
+
 
                 return Container(
                   margin: const EdgeInsets.symmetric(vertical: 5),

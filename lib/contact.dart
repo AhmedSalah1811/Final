@@ -126,7 +126,7 @@ class _ContactState extends State<ContactPage> {
                     const Center(
                       child: Text(
                         'Get in Touch',
-                        style: TextStyle(fontSize: 30, color: Colors.blue),
+                        style: TextStyle(fontSize: 27, color: Colors.blue,fontWeight: FontWeight.bold),
                       ),
                     ),
                     const SizedBox(height: 10),
@@ -134,22 +134,22 @@ class _ContactState extends State<ContactPage> {
                       child: Text(
                         'Have a question? We would love to hear from you.\nSend us a message and we will respond soon.',
                         textAlign: TextAlign.center,
-                        style: TextStyle(color: Colors.white60),
+                        style: TextStyle(color: Colors.white,fontSize:15 ),
                       ),
                     ),
                     const SizedBox(height: 50),
-                    const Text("Name", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.blue)),
+                    const Text("Name", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.blue)),
                     const SizedBox(height: 5),
                     Text_Field(hintText: 'Enter your name', controller: nameController, borderColor:Colors.white70 ,),
                     const SizedBox(height: 20),
-                    const Text("Email", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.blue)),
+                    const Text("Email", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.blue)),
                     const SizedBox(height: 5),
                     Text_Field(hintText: 'Enter your email', controller: emailController, borderColor:Colors.white70 ,),
                     const SizedBox(height: 20),
-                    const Text("Message", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.blue)),
+                    const Text("Message", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.blue)),
                     const SizedBox(height: 5),
                     SizedBox(height: 120, child: Text_Field(hintText: 'Enter your message', controller: messageController, borderColor:Colors.white70 ,)),
-                    const SizedBox(height: 30),
+
                     Center(
                       child: ElevatedButton(
                         onPressed: sendFeedback,
@@ -169,7 +169,7 @@ class _ContactState extends State<ContactPage> {
         ],
       ),bottomNavigationBar: Container(height: 60,
       child: BottomAppBar(
-        color: Colors.white70,
+        color: Colors.black87,
         shape: const CircularNotchedRectangle(),
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 1),

@@ -121,7 +121,7 @@ class _SubscriptionState extends State<Subscription> {
       ),
       bottomNavigationBar: Container(height: 60,
         child: BottomAppBar(
-          color: Colors.white70,
+          color: Colors.black87,
           shape: const CircularNotchedRectangle(),
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 1),
@@ -185,10 +185,10 @@ class PriceDetails extends StatelessWidget {
       height: 300,
       width: double.infinity,
       decoration:BoxDecoration(
-        color: Colors.black12,
+        color: Colors.white,
         borderRadius: BorderRadius.circular(10),
         border: Border.all(
-          color: Colors.white70,
+          color: Colors.black,
           width: 2,
         ),
       ),
@@ -197,18 +197,18 @@ class PriceDetails extends StatelessWidget {
         children: [
           Text(
             title,
-            style: const TextStyle(color: Colors.white, fontSize: 18),
+            style: const TextStyle(color: Colors.black, fontSize: 18),
           ),
           const SizedBox(height: 20),
           Row(
             children: [
               Text(
                 price,
-                style: const TextStyle(color: Colors.white, fontSize: 22),
+                style: const TextStyle(color: Colors.black, fontSize: 22),
               ),
               Text(
                 duration,
-                style: const TextStyle(color: Colors.white, fontSize: 12),
+                style: const TextStyle(color: Colors.black, fontSize: 12),
               ),
             ],
           ),
@@ -218,7 +218,7 @@ class PriceDetails extends StatelessWidget {
               padding: const EdgeInsets.only(bottom: 10),
               child: Text(
                 '* $feature',
-                style: const TextStyle(color: Colors.white),
+                style: const TextStyle(color: Colors.black),
               ),
             ),
           ),

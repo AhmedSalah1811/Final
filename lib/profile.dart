@@ -45,67 +45,89 @@ class _ProfilePageState extends State<ProfilePage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  CircleAvatar(radius: 60, backgroundImage: AssetImage(profileImage)),
-                  const SizedBox(height: 20),
-                  Text(
-                    name,
-                    style: const TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.blueAccent,
-                    ),
+                  CircleAvatar(radius: 60, backgroundImage: AssetImage('assets/images/logo.png')),
+                  const SizedBox(height: 30),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text(
+                        "Username:",
+                        style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.blue),
+                      ),
+                      Text(
+                        name,
+                        style: const TextStyle(fontSize: 20, color: Colors.white,fontWeight: FontWeight.bold),
+                      ),
+                    ],
                   ),
                   const SizedBox(height: 10),
-                  Text(
-                    email,
-                    style: const TextStyle(fontSize: 16, color: Colors.white60),
-                  ),
-                  const SizedBox(height: 40),
-                  ElevatedButton(
-                    onPressed: () async {
-                      showDialog(
-                        context: context,
-                        builder: (BuildContext context) {
-                          return AlertDialog(
-                            title: const Text("Are you sure?"),
-                            content: const Text(
-                              "If you log out, you will need to log in again.",
-                            ),
-                            actions: [
-                              TextButton(
-                                onPressed: () {
-                                  Navigator.of(context).pop();
-                                },
-                                child: const Text("No"),
-                              ),
-                              TextButton(
-                                onPressed: () async {
-                                  final prefs = await SharedPreferences.getInstance();
-                                  await prefs.remove('user_token');
-                                  Navigator.pushReplacement(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => const HomePage(),
-                                    ),
-                                  );
-                                },
-                                child: const Text("Yes"),
-                              ),
-                            ],
-                          );
-                        },
-                      );
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.redAccent,
-                      padding: const EdgeInsets.symmetric(horizontal: 60, vertical: 20),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text(
+                        "Email:",
+                        style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.blue),
                       ),
+                      Text(
+                        email,
+                        style: const TextStyle(fontSize: 20, color: Colors.white,fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 70),
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Colors.transparent,
+                      borderRadius: BorderRadius.circular(20),
+                      border: Border.all(color: Colors.blue, width: 2),
                     ),
-                    child: const Text(
-                      "Log Out",
-                      style: TextStyle(fontSize: 20, color: Colors.white),
+                    child: ElevatedButton(
+                      onPressed: () async {
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              title: const Text("Are you sure?"),
+                              content: const Text(
+                                "If you log out, you will need to log in again.",
+                              ),
+                              actions: [
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                  child: const Text("No"),
+                                ),
+                                TextButton(
+                                  onPressed: () async {
+                                    final prefs = await SharedPreferences.getInstance();
+                                    await prefs.remove('user_token');
+                                    Navigator.pushReplacement(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => const HomePage(),
+                                      ),
+                                    );
+                                  },
+                                  child: const Text("Yes"),
+                                ),
+                              ],
+                            );
+                          },
+                        );
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.transparent,
+                        shadowColor: Colors.transparent,
+                        padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 15),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                      ),
+                      child: const Text(
+                        "Log Out",
+                        style: TextStyle(fontSize: 25, color: Colors.blue),
+                      ),
                     ),
                   ),
                 ],

@@ -24,7 +24,7 @@ Widget buildNavButton(
           imagePath,
           width: 40,
           height: 40,
-          color: isSelected ? Colors.blue : Colors.black,
+          color: isSelected ? Colors.blue : Colors.white,
           fit: BoxFit.contain,
         ),
       ),

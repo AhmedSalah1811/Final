@@ -75,63 +75,59 @@ class _AboutPageState extends State<AboutPage> {
           ),
           Positioned.fill(
             child: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  const SizedBox(height: 20),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: Image.asset(
-                      'assets/images/logo.png',
-                      height: 280,
-                      fit: BoxFit.contain,
-                    ),
-                  ),
-                  const SizedBox(height: 20),
-                  SizedBox(
-                    height: 250,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        physics: const BouncingScrollPhysics(),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: const [
-                            FeaturesBox(
-                              title: 'Component Library',
-                              description:
-                              'Access a vast library of pre-built components ready to use in your project.',
-                            ),
-                            FeaturesBox(
-                              title: 'Responsive Design',
-                              description:
-                              'All generated UIs are fully responsive and work perfectly on any device.',
-                            ),
-                            FeaturesBox(
-                              title: 'Theme Customization',
-                              description:
-                              'Customize colors, fonts, and styles to match your brand identity.',
-                            ),
-                            FeaturesBox(
-                              title: 'Export Options',
-                              description:
-                              'Export your UI in multiple formats including Flutter, React, and HTML.',
-                            ),
-                          ],
+              child: Container(
+                height: MediaQuery.of(context).size.height,
+                width: double.infinity,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    const SizedBox(height: 20),
+                    const SizedBox(height: 20),
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 10),
+                        child: SingleChildScrollView(
+                          scrollDirection: Axis.vertical,
+                          physics: const BouncingScrollPhysics(),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: const [
+                              FeaturesBox(
+                                title: 'Component Library',
+                                description:
+                                'Access a vast library of pre-built components ready to use in your project.',
+                              ),
+                              SizedBox(height: 10,),
+                              FeaturesBox(
+                                title: 'Responsive Design',
+                                description:
+                                'All generated UIs are fully responsive and work perfectly on any device.',
+                              ),SizedBox(height: 10,),
+                              FeaturesBox(
+                                title: 'Theme Customization',
+                                description:
+                                'Customize colors, fonts, and styles to match your brand identity.',
+                              ),SizedBox(height: 10,),
+                              FeaturesBox(
+                                title: 'Export Options',
+                                description:
+                                'Export your UI in multiple formats including Flutter, React, and HTML.',
+                              ),SizedBox(height: 10,),
+                            ],
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
+            )
           ),
         ],
       ),
       bottomNavigationBar: Container(height: 60,
         child: BottomAppBar(
-          color: Colors.white70,
+          color: Colors.black87,
           shape: const CircularNotchedRectangle(),
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 1),
@@ -163,12 +159,12 @@ class FeaturesBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 180,
+      width: 300,
       height: 250,
       margin: const EdgeInsets.symmetric(horizontal: 8),
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: Colors.blue,
+        color: Colors.white,
         borderRadius: BorderRadius.circular(15),
         boxShadow: [
           BoxShadow(
@@ -184,15 +180,15 @@ class FeaturesBox extends StatelessWidget {
           Text(
             title,
             style: const TextStyle(
-              color: Colors.white,
-              fontSize: 18,
+              color: Colors.black,
+              fontSize: 24,
               fontWeight: FontWeight.bold,
             ),
           ),
           const SizedBox(height: 10),
           Text(
             description,
-            style: const TextStyle(color: Colors.white, fontSize: 14),
+            style: const TextStyle(color: Colors.black, fontSize: 18),
           ),
         ],
       ),
