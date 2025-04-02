@@ -97,7 +97,7 @@ class _ChatBotState extends State<ChatBot> {
         });
         messages.add({
           "role": "bot",
-          "message": "assets/images/put ui.png",
+          "message": "assets/images/ui only.png",
           "type": "image",
         });
       });
@@ -108,7 +108,7 @@ class _ChatBotState extends State<ChatBot> {
 
     try {
       http.Response response = await http.post(
-        Uri.parse('https://5f6a-197-53-108-220.ngrok-free.app/home/chat'),
+        Uri.parse('https://93b3-156-211-100-193.ngrok-free.app/home/chat'),
         headers: {
           "Content-Type": "application/json",
           if (authToken != null) "Authorization": "Bearer $authToken",
@@ -139,7 +139,7 @@ class _ChatBotState extends State<ChatBot> {
             });
             messages.add({
               "role": "bot",
-              "message": "assets/images/Not-Found12.png",
+              "message": "assets/images/there is image not seen.png",
               "type": "image",
             });
           });
@@ -153,7 +153,7 @@ class _ChatBotState extends State<ChatBot> {
           });
           messages.add({
             "role": "bot",
-            "message": "assets/images/Error13.png",
+            "message": "assets/images/no response in server.png",
             "type": "image",
           });
         });
@@ -167,7 +167,7 @@ class _ChatBotState extends State<ChatBot> {
         });
         messages.add({
           "role": "bot",
-          "message": "assets/images/Error13.png",
+          "message": "assets/images/no response in server.png",
           "type": "image",
         });
       });
