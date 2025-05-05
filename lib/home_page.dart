@@ -45,7 +45,8 @@ class _HomePageState extends State<HomePage> {
               },
             ),
           )
-          ..loadRequest(Uri.parse("http://192.168.1.6:5173/"));
+          ..loadRequest(Uri.parse("http://192.168.230.129:5173/"));
+
       });
     });
   }

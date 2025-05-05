@@ -108,7 +108,7 @@ class _ChatBotState extends State<ChatBot> {
 
     try {
       http.Response response = await http.post(
-        Uri.parse('https://93b3-156-211-100-193.ngrok-free.app/home/chat'),
+        Uri.parse('https://d520-196-132-67-86.ngrok-free.app/home/chat'),
         headers: {
           "Content-Type": "application/json",
           if (authToken != null) "Authorization": "Bearer $authToken",
